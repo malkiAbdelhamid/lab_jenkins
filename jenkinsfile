@@ -10,15 +10,22 @@ pipeline{
 
 		stage("Test"){
 			steps{
-				sh "npm install"
-				sh "npm test"
+				bat "npm install"
+				bat "npm test"
 			}
 		}
 
 		stage ("Build"){
 
 			steps{
-				sh 'npm run build'
+				bat 'npm run build'
+			}
+
+		}
+
+		stage("build docker image"){
+			steps{
+				bat 'docker build -t my-node-app .'
 			}
 		}
 	}
